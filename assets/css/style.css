@@ -1,0 +1,53 @@
+:root{
+  --custom-names: rgb(42, 42, 42)
+}
+
+.popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+body{
+  background-color: white;
+  color: black;
+}
+
+#principal{
+  width: 100%;
+  height: 100vh;
+  background: url(../img/principal-backround.jpeg) top center;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+#principal .principal-container{
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#principal .principal-container h1{
+  position: relative;
+  padding-top: 15px;
+  font-size: 90px;
+  color: var(--custom-names);
+  font-weight: bolder;
+}
+
+#principal .principal-container a{
+  position: relative;
+  top: 53px;
+  font-size: 30px;
+  color: var(--custom-names);
+
+}

@@ -58,9 +58,6 @@
         </div>
     </div>
 
-
-
-
     <script>
         document.getElementById("CreaIlConcerto").addEventListener("click", async (e) => {
             e.preventDefault()
@@ -70,26 +67,24 @@
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-            "title": document.getElementById("titolo").value,
-            "location": document.getElementById("luogo").value,
-            "startsAt": document.getElementById("data-inizio").value,
-            "endsAt": document.getElementById("data-fine").value
+                "title": document.getElementById("titolo").value,
+                "location": document.getElementById("luogo").value,
+                "startsAt": document.getElementById("data-inizio").value,
+                "endsAt": document.getElementById("data-fine").value
             });
 
-
             var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
             };
 
             await fetch("https://events.abattaglia.it/api/event/create", requestOptions)
             .then(response => response.text())
             .then(result => {/*console.log(result)*/})
             .catch(error => console.log('error', error));
-
-            })
+        })
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
