@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "email": "pietro.vidoni04@gmail.com",
+        "username": "admin",
+        "password": "$2y$10$gYM6DaM1GLz9NHH0KJlxL.vFqpd\/crRAW7\/BUIPpKwk8kPxueAKtm",
+        "logged": false,
+        "type": "admin",
+        "token": "a039f7fb7a71f3ba9bfb4328d72c2a8c"
+    },
+    {
+        "id": 2,
+        "email": "pietro@l.com",
+        "username": "pietro",
+        "password": "$2y$10$J72sEYAg9OXmPqM6ASjMK.AzzjcKsTbMiHqiLONC4aHyQB5TGjeoO",
+        "logged": false,
+        "type": "supplier"
+    }
+]
