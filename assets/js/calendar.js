@@ -1,6 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+
     var calendarEl = document.getElementById('calendar');
     var createEventButton = document.getElementById('AddEvent');
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "token 35261b94-a221-410c-8167-ac226f010661");
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'it',
@@ -10,36 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
             center: '',
             end: 'today prev,next'
         },
-        events: [
-            {
-                title: 'Evento 1',
-                start: '2023-03-01',
-                description: 'Questo è un evento molto importante che non devi perdere',
-            },
-            {
-                title: 'Evento 2',
-                start: '2023-03-05',
-                end: '2023-03-07',
-                description: 'Questo è un evento molto importante che non devi perdere',
-
-            },
-            {
-                title: 'Evento 3',
-                start: '2023-03-09T12:30:00',
-                allDay: false,
-                url: "https://google.com",
-                description: "important event"
-            },
-            {
-                title: 'Evento 5',
-                start: '2023-03-25T10:00:00',
-                end: '2023-03-25T13:00:00',
-                description: 'Questo è un evento molto importante che non devi perdere',
-                extendedProps: {
-                    dettagli: 'L\'evento si terrà presso l\'Hotel XYZ'
-                }
-            }
-        ],
         eventClick: function (info) {
             var popupEl = document.getElementById('popup');
             popupEl.style.display = 'block';
@@ -83,17 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", "token 12488864-7947-4ac5-9eea-e3cbf3434e6f");
-        myHeaders.append("Content-Type", "application/json");
-
         var raw = {
             "title": document.getElementById("titolo").value,
             "location": document.getElementById("luogo").value,
             "startsAt": document.getElementById("data-inizio").value,
             "endsAt": document.getElementById("data-fine").value,
-            "description": document.getElementById("description").value
         };
 
         var actualDate = new Date(document.getElementById("data-fine").value);
@@ -117,13 +85,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
         await fetch("https://events.abattaglia.it/api/event/create", requestOptions)
             .then(response => response.text())
-            .then(result => {/*console.log(result)*/ })
+            .then(result => { console.log(result) })
             .catch(error => console.log('error', error));
-
-        console.log(raw);
 
         calendar.addEvent(fullCalendarDate);
     });
+
+    try {
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://events.abattaglia.it/api/event/list", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                let data = JSON.parse(result); 
+
+                data = data.map(event => {
+                    const newEvent = {
+                        title: event.title,
+                        start: event.startsAt,
+                        end: event.endsAt,
+                        description: event.description
+                    };
+                    return newEvent;
+                });
+
+                data.forEach(element => {
+                    calendar.addEvent(element);
+                    console.log(element);
+                })
+            })
+            .catch(error => console.log('error', error));
+
+    } catch (error) {
+        console.log("something went wrong " + error);
+    }
 
     calendar.render();
 });
