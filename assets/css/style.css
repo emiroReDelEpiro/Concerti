@@ -6,6 +6,7 @@ body {
   scrollbar-width: none;
   overflow-y: scroll;
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(3,3,3,1) 35%, rgba(4,20,23,1) 100%, rgba(245,253,255,1) 100%);
+  overflow-x: hidden
 }
 
 html {
@@ -189,4 +190,44 @@ h1 {
   padding-top: 50%;
   text-align: center;
   padding: 100px 0;
+}
+
+.cartello {
+  background-color: rgb(38, 115, 77);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.cartelloNome {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  margin-left: 10px;
+}
+
+.cartelloLuogo {
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.cartelloData {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.cartelloDescrizione{
+  padding-left: 10px;
+}
+
+.no-results {
+  background-color: white;
+  width: 50%;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
 }

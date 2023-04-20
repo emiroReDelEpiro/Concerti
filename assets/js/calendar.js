@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     myHeaders.append("Authorization", "token 35261b94-a221-410c-8167-ac226f010661");
     myHeaders.append("Content-Type", "application/json");
 
+    if(isAdmin){
+        document.getElementById('showAddEventPage').style.display = "block";
+    }
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'it',
         initialView: 'dayGridMonth',
@@ -70,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     createEventButton.addEventListener("click", async (e) => {
         e.preventDefault()
         
-        console.log(document.getElementById("data-inizio").value)
-
         var startsAt = new Date(document.getElementById("data-inizio").value);
         var endsAt = new Date(document.getElementById("data-fine").value);
         
@@ -148,6 +150,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 data.forEach(element => {
                     calendar.addEvent(element);
                 })
+
+                display(data);
+
+                document.getElementById("orderBy").addEventListener("change", () => {
+                    let valueOrder = document.getElementById("orderBy").value;
+            
+                    document.getElementById("box").innerHTML = "";
+            
+                    data = orderArrayBy(data, valueOrder);
+            
+                    display(data);
+                })
+                
+                document.getElementById('form').addEventListener("submit", e =>{
+                    e.preventDefault();
+                
+                    let filtered = data.filter(search);
+                
+                    document.getElementById("box").innerHTML = "";
+                
+                    if (filtered.length === 0) {
+                        let noResults = document.createElement("div");
+                        noResults.innerHTML = "Nessun risultato trovato";
+                        noResults.classList.add("no-results");
+                        document.getElementById("box").append(noResults);
+                    } else {
+                        display(filtered);
+                    }
+                })                
+
             })
             .catch(error => console.log('error', error));
 
@@ -156,4 +188,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     calendar.render();
+
+    //eventi = orderArrayBy(eventi, "alfabeto");
+
+    function display(p1) {
+        p1.forEach(element => {
+            let cartello = document.createElement("div");
+            cartello.classList.add("cartello");
+
+            let titolo = document.createElement("div");
+
+            let nome = document.createElement("div");
+            nome.classList.add("cartelloNome");;
+            nome.innerHTML = element.title;
+
+            let luogo = document.createElement("div");
+            luogo.classList.add("cartelloLuogo");
+            luogo.innerHTML = element.description;
+
+            let data = document.createElement("div");
+            data.classList.add("cartelloData");
+            data.innerHTML = element.start + "/" + element.end;
+
+            let descrizione = document.createElement("div");
+            descrizione.classList.add("cartelloDescrizione");
+            descrizione.innerHTML = element.description;
+
+            let box = document.getElementById("box");
+
+            titolo.appendChild(nome);
+            titolo.appendChild(descrizione);
+            cartello.appendChild(titolo);
+            cartello.appendChild(data);
+            cartello.appendChild(luogo);
+            box.appendChild(cartello);
+        });
+    }
+
+
+
+    //ORDER BY
+    
+
+    function orderArrayBy(p1, p2) {
+        switch (p2) {
+            case "alfabeto":
+                return p1.sort((x, y) => {
+                    if (x.title < y.title) return -1;
+                    if (x.title > y.title) return 1;
+                    return 0;
+                });
+            case "alfabetoInverso":
+                return p1.sort((x, y) => {
+                    if (x.title > y.title) return -1;
+                    if (x.title < y.title) return 1;
+                    return 0;
+                });
+            case "dataCrescente":
+                return p1.sort((x, y) => {
+                    if (x.start < y.start) return -1;
+                    if (x.start > y.start) return 1;
+                    return 0;
+                });
+            case "dataDecrescente":
+                return p1.sort((x, y) => {
+                    if (x.start > y.start) return -1;
+                    if (x.start < y.start) return 1;
+                    return 0;
+                });
+            case "location":
+                return p1.sort((x, y) => {
+                    if (x.description < y.description) return -1;
+                    if (x.description > y.description) return 1;
+                    return 0;
+                });
+        }
+    }
+
+    function search(value) {
+        return value.title.toLowerCase().includes(document.getElementById("barraDiRicerca").value.toLowerCase());
+    }
+
 });
