@@ -2,29 +2,179 @@
   --custom-names: rgb(42, 42, 42)
 }
 
-.popup {
+body {
+  scrollbar-width: none;
+  overflow-y: scroll;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(3,3,3,1) 35%, rgba(4,20,23,1) 100%, rgba(245,253,255,1) 100%);
+  overflow-x: hidden
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-margin-top: 50px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+#showAddEventPage {
+  background-color: rgb(44, 62, 80);
+  border-color: rgb(44, 62, 80);
+}
+
+#popup {
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: none;  
 }
 
 
-body{
-  background-color: white;
-  color: black;
+#box {
+  max-height: 85vh;
+  overflow: auto;
+}
+
+@media (min-width: 576px) {
+  #popup .modal-dialog {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  #popup .modal-dialog {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #popup .modal-dialog {
+    max-width: 1000px;
+  }
+}
+
+.gradient-custom {
+  background: #6a11cb;
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+div.ex1 {
+  width: 700px;
+  height: 110px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  overflow: scroll;
+}
+
+.card {
+  background-color: #F5F5F5;
+}
+
+h1 {
+  color: #004085;
+}
+
+#calendar {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-item {
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.carousel-caption {
+  bottom: 270px;
+}
+
+.carousel-caption h5 {
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+}
+
+.carousel-caption p {
+  width: 75%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.navbar-light .navbar-brand {
+  color: #fff;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-toggler {
+  background: #fff;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .2rem 1rem;
+}
+
+.nav-link.active,.nav-link:focus{
+  color: #fff;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+.link-area
+{
+  position:fixed;
+  bottom:20px;
+  left:20px;  
+  padding:15px;
+  border-radius:40px;
+  background:tomato;
+}
+.link-area a
+{
+  text-decoration:none;
+  color:#fff;
+  font-size:25px;
 }
 
 #principal{
   width: 100%;
   height: 100vh;
-  background: url(../img/principal-backround.jpeg) top center;
-  background-size: cover;
   overflow: hidden;
   position: relative;
 }
@@ -49,5 +199,88 @@ body{
   top: 53px;
   font-size: 30px;
   color: var(--custom-names);
+}
 
+#events-section {
+  width: 100%;
+  height: 100vh;
+  margin-top: 35%;
+}
+
+#events-section .container{
+  position: relative;
+  top: 40px;
+}
+
+#about {
+  padding-top: 50%;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.box-map {
+  padding-top: 10px;
+  width: 800px;
+  height: 400px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.map-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.map-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.footer_contact{
+  padding-top: 50px;
+}
+
+.cartello {
+  background-color: rgb(38, 115, 77);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.cartelloNome {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  margin-left: 10px;
+}
+
+.cartelloLuogo {
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.cartelloData {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.cartelloDescrizione{
+  padding-left: 10px;
+}
+
+.no-results {
+  background-color: white;
+  width: 50%;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
 }

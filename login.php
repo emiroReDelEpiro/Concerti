@@ -18,16 +18,19 @@
     }
     
     $_SESSION['valid'] = $valid;
-    //TODO make admin redirecton
+    
     if($valid){
 
         $_SESSION['logged_in'] = true;
+        
+        $_SESSION['admin'] = false;
 
-        if($username == "admin") {
-            header("Location: adminChartPage.php");
+        if($username === "admin") {
+            $_SESSION['admin'] = true;
+            header("Location: calendar.php");
         }
         else {
-            header("Location: calendar.html");
+            header("Location: calendar.php");
         }
     }else{
         header("Location: loginPage.php?valid=WrongCredentials");
