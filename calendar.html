@@ -107,11 +107,11 @@
                     </div>
                     <div class='modal-body'>
                       <p></p>
+                      <button type='button' class='btn btn-danger' id='btn-delete-event'>Elimina evento</button>
                     </div>
                   </div>
                 </div>
-              </div>
-
+              </div>              
             </div>
             <div>
               <button id="showAddEventPage" class="btn btn-primary" type="button" data-toggle="modal"
@@ -129,35 +129,37 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <div>
-                        <label for="titolo">Titolo</label>
-                        <input type="text" id="titolo" name="titolo">
+                      <form action="">
+                        <div>
+                          <label for="titolo">Titolo</label>
+                          <input type="text" id="titolo" name="titolo" required>
+                        </div>
+  
+                        <div>
+                          <label for="luogo">Luogo</label>
+                          <input type="text" id="luogo" name="luogo" required>
+                        </div>
+  
+                        <div>
+                          <label for="data-inizio">Inizio del evento</label>
+                          <input type="date" id="data-inizio" name="data-inizio" required>
+                        </div>
+  
+                        <div>
+                          <label for="data-fine">Fine del evento</label>
+                          <input type="date" id="data-fine" name="data-fine" required>
+                        </div>
+  
+                        <div>
+                          <label for="descriptionName">Description</label>
+                          <input type="text" id="description" name="descriptionName">
+                        </div>
                       </div>
-
-                      <div>
-                        <label for="luogo">Luogo</label>
-                        <input type="text" id="luogo" name="luogo">
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="AddEvent" class="btn btn-primary">Save changes</button>
                       </div>
-
-                      <div>
-                        <label for="data-inizio">Inizio del evento</label>
-                        <input type="date" id="data-inizio" name="data-inizio">
-                      </div>
-
-                      <div>
-                        <label for="data-fine">Fine del evento</label>
-                        <input type="date" id="data-fine" name="data-fine">
-                      </div>
-
-                      <div>
-                        <label for="descriptionName">Description</label>
-                        <input type="text" id="description" name="descriptionName">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" id="AddEvent" class="btn btn-primary">Save changes</button>
-                    </div>
+                      </form>
                   </div>
                 </div>
               </div>
